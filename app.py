@@ -30,7 +30,11 @@ def predict_price(area, bhk, bathroom):
         '6th Phase JP Nagar': 0,
         '7th Phase JP Nagar': 0,
         '8th Phase JP Nagar': 0,
-        # Add more features as needed
+        '9th Phase JP Nagar': 0,
+        'AECS Layout': 0,
+        'Abbigere': 0,
+        'Akshaya Nagar': 0,
+        'Ambalipura': 0,
         'bhk': bhk
     }
     # Set the value of the area if it matches any of the predefined areas
