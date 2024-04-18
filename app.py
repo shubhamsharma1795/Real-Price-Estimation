@@ -8,7 +8,7 @@ model = pickle.load(open('banglore_home_prices_model.pickle', 'rb'))
 
 # Load the column names for input
 try:
-    with open('columns.json', 'r') as f:
+    with open('columns(1).json', 'r') as f:
         columns = json.load(f)
 except FileNotFoundError:
     st.error("Error: 'columns.json' file not found.")
