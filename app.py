@@ -4,7 +4,7 @@ import pickle
 import json
 
 # Load the trained model
-model = pickle.load(open('banglore_home_prices_model.pickle', 'rb'))
+model = pickle.load(open('banglore_home_price_model.pickle', 'rb'))
 
 # Load the column names for input
 try:
