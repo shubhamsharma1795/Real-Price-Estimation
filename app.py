@@ -19,7 +19,8 @@ except json.JSONDecodeError:
 
 # Function to predict price
 def predict_price(bhk, bathroom):
-    input_df = pd.DataFrame([[bhk, bathroom]], columns=columns)
+    input_data = [[bhk, bathroom]]
+    input_df = pd.DataFrame(input_data, columns=['bhk', 'bathroom'])
     print("Input DataFrame:", input_df)  # Print input DataFrame for debugging
     prediction = model.predict(input_df)
     return prediction[0]
