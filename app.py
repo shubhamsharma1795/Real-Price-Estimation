@@ -58,6 +58,11 @@ def predict_price(area, bhk, bathroom):
         'Abbigere': 0,
         'Akshaya Nagar': 0,
         'Ambalipura': 0,
+        'Ambedkar Nagar': 0,
+        'Amruthahalli': 0,
+        'Anandapura': 0,
+        'Ananth Nagar': 0,
+        'Anekal': 0,
         # Add more features as needed
         'bhk': bhk,
         'bathroom': bathroom
