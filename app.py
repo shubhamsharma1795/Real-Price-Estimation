@@ -1,18 +1,26 @@
 import streamlit as st
 import pandas as pd
 import pickle
-import json  # Make sure to import the json module
+import json
 
 # Load the trained model
 model = pickle.load(open('banglore_home_prices_model.pickle', 'rb'))
 
 # Load the column names for input
-with open('columns.json', 'r') as f:
-    columns = json.load(f)
+try:
+    with open('columns.json', 'r') as f:
+        columns = json.load(f)
+except FileNotFoundError:
+    st.error("Error: 'columns.json' file not found.")
+    st.stop()
+except json.JSONDecodeError:
+    st.error("Error: Unable to parse 'columns.json' file. Make sure it's correctly formatted.")
+    st.stop()
 
 # Function to predict price
 def predict_price(bhk, bathroom):
     input_df = pd.DataFrame([[bhk, bathroom]], columns=columns)
+    print("Input DataFrame:", input_df)  # Print input DataFrame for debugging
     prediction = model.predict(input_df)
     return prediction[0]
 
