@@ -19,7 +19,7 @@ except json.JSONDecodeError:
 
 # Function to predict price
 def predict_price(area, bhk, bathroom):
-    # Create a dictionary with dummy values for features used during training
+    # Create a dictionary with dummy values for all features
     input_data = {
         '1st Block Jayanagar': 0,
         '1st Phase JP Nagar': 0,
@@ -44,9 +44,8 @@ def predict_price(area, bhk, bathroom):
         'bhk': bhk,
         'bathroom': bathroom
     }
-    # Set the value of the area if it matches any of the predefined areas
-    if area in input_data:
-        input_data[area] = 1
+    # Set the value of the selected area to 1
+    input_data[area] = 1
 
     input_df = pd.DataFrame([input_data])
     print("Input DataFrame:", input_df)  # Print input DataFrame for debugging
@@ -71,7 +70,7 @@ st.title('Bangalore Room Price Prediction')
 
 # Function to get user inputs
 def get_user_input():
-    area = st.selectbox('Select Area', ('1st Block Jayanagar', '1st Phase JP Nagar', '2nd Phase Judicial Layout', '2nd Stage Nagarbhavi', '5th Block Hbr Layout', '5th Phase JP Nagar', '6th Phase JP Nagar', '7th Phase JP Nagar', '8th Phase JP Nagar'))
+    area = st.selectbox('Select Area', ('1st Block Jayanagar', '1st Phase JP Nagar', '2nd Phase Judicial Layout', '2nd Stage Nagarbhavi', '5th Block Hbr Layout', '5th Phase JP Nagar', '6th Phase JP Nagar', '7th Phase JP Nagar', '8th Phase JP Nagar', '9th Phase JP Nagar', 'AECS Layout', 'Abbigere', 'Akshaya Nagar', 'Ambalipura', 'Ambedkar Nagar', 'Amruthahalli', 'Anandapura', 'Ananth Nagar', 'Anekal'))
     bhk = st.number_input('Number of Bedrooms (BHK)', min_value=1, max_value=10, value=1, step=1)
     bathroom = st.number_input('Number of Bathrooms', min_value=1, max_value=10, value=1, step=1)
     return area, bhk, bathroom
