@@ -17,41 +17,6 @@ except json.JSONDecodeError:
     st.error("Error: Unable to parse 'columns.json' file. Make sure it's correctly formatted.")
     st.stop()
 
-# Function to predict price
-def predict_price(area, bhk, bathroom):
-    # Create a dictionary with dummy values for all features
-    input_data = {
-        '1st Block Jayanagar': 0,
-        '1st Phase JP Nagar': 0,
-        '2nd Phase Judicial Layout': 0,
-        '2nd Stage Nagarbhavi': 0,
-        '5th Block Hbr Layout': 0,
-        '5th Phase JP Nagar': 0,
-        '6th Phase JP Nagar': 0,
-        '7th Phase JP Nagar': 0,
-        '8th Phase JP Nagar': 0,
-        '9th Phase JP Nagar': 0,
-        'AECS Layout': 0,
-        'Abbigere': 0,
-        'Akshaya Nagar': 0,
-        'Ambalipura': 0,
-        'Ambedkar Nagar': 0,
-        'Amruthahalli': 0,
-        'Anandapura': 0,
-        'Ananth Nagar': 0,
-        'Anekal': 0,
-        # Add more features as needed
-        'bhk': bhk,
-        'bathroom': bathroom
-    }
-    # Set the value of the selected area to 1
-    input_data[area] = 1
-
-    input_df = pd.DataFrame([input_data])
-    print("Input DataFrame:", input_df)  # Print input DataFrame for debugging
-    prediction = model.predict(input_df)
-    return prediction[0]
-
 # Set background image
 st.markdown(
     """
@@ -74,6 +39,36 @@ def get_user_input():
     bhk = st.number_input('Number of Bedrooms (BHK)', min_value=1, max_value=10, value=1, step=1)
     bathroom = st.number_input('Number of Bathrooms', min_value=1, max_value=10, value=1, step=1)
     return area, bhk, bathroom
+
+# Function to predict price
+def predict_price(area, bhk, bathroom):
+    # Create a dictionary with dummy values for all features
+    input_data = {
+        '1st Block Jayanagar': 0,
+        '1st Phase JP Nagar': 0,
+        '2nd Phase Judicial Layout': 0,
+        '2nd Stage Nagarbhavi': 0,
+        '5th Block Hbr Layout': 0,
+        '5th Phase JP Nagar': 0,
+        '6th Phase JP Nagar': 0,
+        '7th Phase JP Nagar': 0,
+        '8th Phase JP Nagar': 0,
+        '9th Phase JP Nagar': 0,
+        'AECS Layout': 0,
+        'Abbigere': 0,
+        'Akshaya Nagar': 0,
+        'Ambalipura': 0,
+        # Add more features as needed
+        'bhk': bhk,
+        'bathroom': bathroom
+    }
+    # Set the value of the selected area to 1
+    input_data[area] = 1
+
+    input_df = pd.DataFrame([input_data])
+    print("Input DataFrame:", input_df)  # Print input DataFrame for debugging
+    prediction = model.predict(input_df)
+    return prediction[0]
 
 # Predict price on button click
 if st.button('Predict Price'):
